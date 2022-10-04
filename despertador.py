@@ -4,6 +4,9 @@ from tkinter import *
 # importando pillow (imagens)
 from PIL import Image, ImageTk
 
+#instalando o pygame (som)
+from pygame import mixer
+
 # cores
 cor0 = "f0f3f5"   # --preto
 cor1 = "#FFFFFF"  # --branca
@@ -39,7 +42,7 @@ imagem_despertador = ImageTk.PhotoImage(imagem_despertador)
 
 l_imagem_despertador = Label(
     frame_baixo, height=100, image=imagem_despertador, compound=LEFT, padx=10, anchor=NW, font=('Ivi 16 bold'), bg=cor1, fg=cor3)
-l_imagem_despertador.place(x=10, y=10)
+l_imagem_despertador.place(x=0, y=10)
 
 # nao precisei criar outra variavel, eu adicionei juntas no mesmo.
 #imagem_csv = Image.open('imagens/idades.png')
@@ -60,7 +63,7 @@ c_hora.current(0)
 c_hora.place(x=130, y=50)
 
 l_imagem_horas = Label(frame_baixo, text="HORAS",
-                       height=1, anchor=NW, font=('Ivi 8 bold'), bg=cor1, fg=cor4)
+                       height=1, anchor=NW, font=('Arial 7 bold'), bg=cor1, fg=cor4)
 l_imagem_horas.place(x=130, y=30)
 
 
@@ -72,7 +75,7 @@ c_minutos.current(0)
 c_minutos.place(x=180, y=50)
 
 l_imagem_minutos = Label(frame_baixo, text="MINUTOS",
-                         height=1, anchor=NW, font=('Ivi 8 bold'), bg=cor1, fg=cor4)
+                         height=1, anchor=NW, font=('Arial 7 bold'), bg=cor1, fg=cor4)
 l_imagem_minutos.place(x=175, y=30)
 
 
@@ -84,7 +87,7 @@ c_segundos.current(0)
 c_segundos.place(x=230, y=50)
 
 l_imagem_segundos = Label(frame_baixo, text="SEGUNDOS",
-                          height=1, anchor=NW, font=('Ivi 8 bold'), bg=cor1, fg=cor4)
+                          height=1, anchor=NW, font=('Arial 7 bold'), bg=cor1, fg=cor4)
 l_imagem_segundos.place(x=230, y=30)
 
 
@@ -95,8 +98,17 @@ c_periodo.current(0)
 c_periodo.place(x=290, y=50)
 
 l_imagem_periodo = Label(frame_baixo, text="PERIODO",
-                         height=1, anchor=NW, font=('Ivi 8 bold'), bg=cor1, fg=cor4)
+                         height=1, anchor=NW, font=('Arial 7 bold'), bg=cor1, fg=cor4)
 l_imagem_periodo.place(x=290, y=30)
+
+
+# CRIANDO RADIO ATIVAR
+
+
+selecionado = IntVar()
+radio = Radiobutton(frame_baixo, text='Ativar', value=1,
+                    variable=selecionado, font='Arial 8', bg=cor1, fg=cor4)
+radio.place(x=125, y=95)
 
 
 janela.mainloop()
