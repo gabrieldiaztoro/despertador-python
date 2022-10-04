@@ -1,10 +1,17 @@
 from tkinter.ttk import *
 from tkinter import *
 
+from pygame import mixer
+import time
+from datetime import datetime
+from time import sleep
+from threading import Thread
+
+
 # importando pillow (imagens)
 from PIL import Image, ImageTk
 
-#instalando o pygame (som)
+# instalando o pygame (som)
 from pygame import mixer
 
 # cores
@@ -36,7 +43,7 @@ l_linha = Label(frame_logo, text="Alarme", width=400,
 l_linha.place(x=0, y=30)
 
 # Adicionando Imagem despertador
-imagem_despertador = Image.open('imagens/despertador.png')
+imagem_despertador = Image.open('arquivos/despertador.png')
 imagem_despertador = imagem_despertador.resize((120, 100))
 imagem_despertador = ImageTk.PhotoImage(imagem_despertador)
 
@@ -103,12 +110,74 @@ l_imagem_periodo.place(x=290, y=30)
 
 
 # CRIANDO RADIO ATIVAR
+def ativar_alarme():
+    if selecionado.get() == 1:
+        print('Ativar: ', selecionado.get())
+    else:
+        t1 = Thread(target=alarme)
+        t1.start()
+
+
+def desativar_alarme():
+    print('Alarme desativado: ', selecionado.get())
+    mixer.music.stop
 
 
 selecionado = IntVar()
-radio = Radiobutton(frame_baixo, text='Ativar', value=1,
+
+
+radio = Radiobutton(frame_baixo, command=ativar_alarme, text='Ativar', value=1,
                     variable=selecionado, font='Arial 8', bg=cor1, fg=cor4)
 radio.place(x=125, y=95)
+
+# CRIANDO FUNCOES DO ALARME
+
+
+def tocar_alarme():
+
+    mixer.music.load()
+    mixer.music.play()
+    selecionado.set(0)
+
+    radio = Radiobutton(frame_baixo, command=desativar_alarme, text='Desativar', value=1,
+                        variable=selecionado, font='Arial 8', bg=cor1, fg=cor4)
+
+
+radio.place(x=187, y=95)
+
+
+def alarme():
+    while True:
+        control = selecionado.get()
+        h_alarme = c_hora.get()
+        m_alarme = c_minutos.get()
+        s_alarme = c_segundos.get()
+        p_alarme = c_periodo.get().upper()
+
+        hora_atual = datetime.now
+
+        hora = hora_atual.strftime("%I")
+        minuto = hora_atual.strftime("%M")
+        segundo = hora_atual.strftime("%S")
+        periodo = hora_atual.strftime("%p")
+
+        if control == 1:
+            if p_alarme == periodo:
+                if h_alarme == hora:
+                    if m_alarme == minuto:
+                        if s_alarme == segundo:
+                            print("hora de fazer pausa")
+                            tocar_alarme()
+                            ativar_alarme()
+
+        sleep(1)
+
+
+t1 = Thread(target=alarme)
+# iciar o thread
+
+t1.start()
+mixer.init()
 
 
 janela.mainloop()
