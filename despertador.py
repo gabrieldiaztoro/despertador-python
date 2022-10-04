@@ -19,15 +19,38 @@ janela.configure(background=cor1)
 janela.resizable(width=FALSE, height=FALSE)
 
 
-frame_cima = Frame(janela, width=400, height=200,
-                   pady=0, padx=0, relief=FLAT, bg=cor2)
-# - parte de cima da calculadora relief = estilo   'flat' ou FLAT, bg = background
-frame_cima.grid(row=0, column=0)
+# Dividindo frames
 
+frame_logo = Frame(janela, width=350, height=10, bg=cor2)
+frame_logo.grid(row=0, column=0, pady=1, padx=0)
 
-l_alarme = Label(frame_cima, text="Alarme", width=18, height=1, padx=3,
-                 relief='flat', anchor='center', font=('Ivi 20 bold'), bg=cor2, fg=cor3)
-l_alarme.place(x=0, y=30)
+frame_baixo = Frame(janela, width=350, height=290, bg=cor1)
+frame_baixo.grid(row=1, column=0, pady=1, padx=0)
+
+# Label logo
+l_linha = Label(frame_logo, text="Alarme", width=400,
+                bg=cor2,  anchor=NW, font=('Ivi 20 bold'))
+l_linha.place(x=0, y=30)
+
+# Adicionando Imagem despertador
+imagem_despertador = Image.open('imagens/despertador.png')
+imagem_despertador = imagem_despertador.resize((120, 100))
+imagem_despertador = ImageTk.PhotoImage(imagem_despertador)
+
+l_imagem_despertador = Label(
+    frame_baixo, height=100, image=imagem_despertador, compound=LEFT, padx=10, anchor=NW, font=('Ivi 16 bold'), bg=cor1, fg=cor3)
+l_imagem_despertador.place(x=10, y=10)
+
+# nao precisei criar outra variavel, eu adicionei juntas no mesmo.
+
+#imagem_csv = Image.open('imagens/idades.png')
+#imagem_csv = imagem_csv.resize((50, 50))
+#imagem_csv = ImageTk.PhotoImage(imagem_csv)
+
+# Label texto Alarme
+l_imagem_despertador = Label(
+    frame_baixo, height=100, image=imagem_despertador, compound=LEFT, padx=10, anchor=NW, font=('Ivi 16 bold'), bg=cor1, fg=cor3)
+l_imagem_despertador.place(x=10, y=10)
 
 
 janela.mainloop()
