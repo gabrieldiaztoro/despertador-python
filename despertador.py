@@ -42,7 +42,6 @@ l_imagem_despertador = Label(
 l_imagem_despertador.place(x=10, y=10)
 
 # nao precisei criar outra variavel, eu adicionei juntas no mesmo.
-
 #imagem_csv = Image.open('imagens/idades.png')
 #imagem_csv = imagem_csv.resize((50, 50))
 #imagem_csv = ImageTk.PhotoImage(imagem_csv)
@@ -52,5 +51,11 @@ l_imagem_despertador = Label(frame_baixo, text="ALARME",
                              height=1, anchor=NE, font=('Ivi 15 bold'), bg=cor1, fg=cor3)
 l_imagem_despertador.place(x=160, y=0)
 
+# criando box
+c_hora = Combobox(frame_baixo, width=2, font=('Ivi 15'))
+c_hora['value'] = ("00", "01", "02", "03", "04", "05",
+                   "06", "07", "08", "09", "10", "11", "12")
+c_hora.current(0)
+c_hora.place(x=130, y=58)
 
 janela.mainloop()
