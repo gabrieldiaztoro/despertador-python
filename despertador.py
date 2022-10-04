@@ -9,7 +9,7 @@ cor0 = "f0f3f5"   # --preto
 cor1 = "#FFFFFF"  # --branca
 cor2 = "#d6872d"  # --ouro
 cor3 = "#fc766d"  # --vermelho
-cor4 = "#403d3d"  # --letra
+cor4 = "#403d3d"  # --preto
 cor5 = "#4a88e8"  # --azul
 
 janela = Tk()
@@ -48,9 +48,9 @@ l_imagem_despertador.place(x=10, y=10)
 #imagem_csv = ImageTk.PhotoImage(imagem_csv)
 
 # Label texto Alarme
-l_imagem_despertador = Label(
-    frame_baixo, height=100, image=imagem_despertador, compound=LEFT, padx=10, anchor=NW, font=('Ivi 16 bold'), bg=cor1, fg=cor3)
-l_imagem_despertador.place(x=10, y=10)
+l_imagem_despertador = Label(frame_baixo, text="ALARME",
+                             height=1, anchor=NE, font=('Ivi 15 bold'), bg=cor1, fg=cor3)
+l_imagem_despertador.place(x=160, y=0)
 
 
 janela.mainloop()
