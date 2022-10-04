@@ -120,7 +120,7 @@ def ativar_alarme():
 
 def desativar_alarme():
     print('Alarme desativado: ', selecionado.get())
-    mixer.music.stop
+    mixer.music.stop()
 
 
 selecionado = IntVar()
@@ -135,15 +135,13 @@ radio.place(x=125, y=95)
 
 def tocar_alarme():
 
-    mixer.music.load()
+    mixer.music.load('arquivos/som.mp3')
     mixer.music.play()
     selecionado.set(0)
 
     radio = Radiobutton(frame_baixo, command=desativar_alarme, text='Desativar', value=1,
                         variable=selecionado, font='Arial 8', bg=cor1, fg=cor4)
-
-
-radio.place(x=187, y=95)
+    radio.place(x=187, y=95)
 
 
 def alarme():
@@ -154,7 +152,7 @@ def alarme():
         s_alarme = c_segundos.get()
         p_alarme = c_periodo.get().upper()
 
-        hora_atual = datetime.now
+        hora_atual = datetime.now()
 
         hora = hora_atual.strftime("%I")
         minuto = hora_atual.strftime("%M")
